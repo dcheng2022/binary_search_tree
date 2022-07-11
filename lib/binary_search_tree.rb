@@ -32,4 +32,24 @@ class Tree
     root_node.right_child = build_tree(array.select { |e| e > array[mid] })
     root_node
   end
+
+  def insert(data)
+    new_node = Node.new(data)
+    node = self.root
+    loop do
+      if new_node < node
+        unless node.left_child
+          node.left_child = new_node
+          return
+        end
+        node = node.left_child
+      else
+        unless node.right_child
+          node.right_child = new_node
+          return
+        end
+        node = node.right_child
+      end
+    end
+  end
 end

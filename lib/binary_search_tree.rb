@@ -19,7 +19,17 @@ class Tree
   attr_accessor :root
 
   def initialize(array = nil)
-    @array = array
-    @root = nil
+    @array = array.uniq.sort
+    @root = build_tree(@array)
+  end
+
+  def build_tree(array = @array)
+    return if array.empty?
+
+    mid = (array.length - 1) / 2.to_i
+    root_node = Node.new(array[mid])
+    root_node.left_child = build_tree(array.select { |e| e < array[mid] })
+    root_node.right_child = build_tree(array.select { |e| e > array[mid] })
+    root_node
   end
 end

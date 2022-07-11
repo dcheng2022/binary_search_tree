@@ -14,3 +14,12 @@ class Node
     data <=> other.data
   end
 end
+
+class Tree
+  attr_accessor :root
+
+  def initialize(array = nil)
+    @array = array
+    @root = nil
+  end
+end

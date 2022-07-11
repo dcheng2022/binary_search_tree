@@ -38,16 +38,12 @@ class Tree
     node = self.root
     loop do
       if new_node < node
-        unless node.left_child
-          node.left_child = new_node
-          return
-        end
+        return node.left_child = new_node unless node.left_child
+
         node = node.left_child
       else
-        unless node.right_child
-          node.right_child = new_node
-          return
-        end
+        return node.right_child = new_node unless node.right_child
+
         node = node.right_child
       end
     end

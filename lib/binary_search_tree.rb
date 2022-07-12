@@ -104,6 +104,15 @@ class Tree
     inorder(node.left_child, node_values, &block)
     block_given? ? yield(node) : node_values << node.data
     inorder(node.right_child, node_values, &block)
-    return node_values
+    node_values
+  end
+
+  def preorder(node = root, node_values = [], &block)
+    return if node.nil?
+
+    block_given? ? yield(node) : node_values << node.data
+    preorder(node.left_child, node_values, &block)
+    preorder(node.right_child, node_values, &block)
+    node_values
   end
 end

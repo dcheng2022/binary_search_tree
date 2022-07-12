@@ -97,4 +97,13 @@ class Tree
     end
     discovered_nodes
   end
+
+  def inorder(node = root, node_values = [], &block)
+    return if node.nil?
+
+    inorder(node.left_child, node_values, &block)
+    block_given? ? yield(node) : node_values << node.data
+    inorder(node.right_child, node_values, &block)
+    return node_values
+  end
 end

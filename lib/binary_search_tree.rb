@@ -115,4 +115,13 @@ class Tree
     preorder(node.right_child, node_values, &block)
     node_values
   end
+
+  def postorder(node = root, node_values = [], &block)
+    return if node.nil?
+
+    postorder(node.left_child, node_values, &block)
+    postorder(node.right_child, node_values, &block)
+    block_given? ? yield(node) : node_values << node.data
+    node_values
+  end
 end

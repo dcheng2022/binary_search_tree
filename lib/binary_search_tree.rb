@@ -85,4 +85,16 @@ class Tree
       node
     end
   end
+
+  def level_order
+    discovered_nodes = []
+    queue = [root]
+    until queue.empty?
+      discovered_node = queue.pop
+      block_given? ? yield(discovered_node) : discovered_nodes << discovered_node
+      queue.unshift(discovered_node.left_child) if discovered_node.left_child
+      queue.unshift(discovered_node.right_child) if discovered_node.right_child
+    end
+    discovered_nodes
+  end
 end

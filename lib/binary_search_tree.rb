@@ -43,4 +43,34 @@ class Tree
     end
     node
   end
+
+  def find_min_value(node)
+    node = node.left_child until node.left_child.nil?
+    node
+  end
+
+  def delete(data, node = root)
+    return node if node.nil?
+
+    if data < node.data
+      node.left_child = delete(data, node.left_child)
+    elsif data > node.data
+      node.right_child delete(data, node.right_child)
+    else
+      if node.left_child.nil?
+        temp = node.right_child
+        node = nil
+        temp
+      elsif node.right_child.nil?
+        temp = node.left_child
+        node = nil
+        temp
+      else
+        temp = find_min_value(node.right_child)
+        node.data = temp.data
+        node.right_child = delete(node.data, node.right_child)
+      end
+    end
+    node
+  end
 end

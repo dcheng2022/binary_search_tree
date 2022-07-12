@@ -33,19 +33,14 @@ class Tree
     root_node
   end
 
-  def insert(data)
-    new_node = Node.new(data)
-    node = self.root
-    loop do
-      if new_node < node
-        return node.left_child = new_node unless node.left_child
+  def insert(data, node = root)
+    return Node.new(data) if node.nil?
 
-        node = node.left_child
-      else
-        return node.right_child = new_node unless node.right_child
-
-        node = node.right_child
-      end
+    if data < node.data
+      node.left_child = insert(data, node.left_child)
+    elsif data > node.data
+      node.right_child = insert(data, node.right_child)
     end
+    node
   end
 end

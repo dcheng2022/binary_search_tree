@@ -124,4 +124,12 @@ class Tree
     block_given? ? yield(node) : node_values << node.data
     node_values
   end
+
+  def height(node)
+    return -1 if node.nil?
+
+    left_height = height(node.left_child)
+    right_height = height(node.right_child)
+    left_height < right_height ? right_height + 1 : left_height + 1
+  end
 end

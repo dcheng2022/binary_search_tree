@@ -60,11 +60,11 @@ class Tree
       if node.left_child.nil?
         temp = node.right_child
         node = nil
-        temp
+        return temp
       elsif node.right_child.nil?
         temp = node.left_child
         node = nil
-        temp
+        return temp
       else
         temp = find_min_value(node.right_child)
         node.data = temp.data

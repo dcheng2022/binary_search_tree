@@ -132,4 +132,19 @@ class Tree
     right_height = height(node.right_child)
     left_height < right_height ? right_height + 1 : left_height + 1
   end
+
+  def depth(node, current_node = root)
+    return -1 if current_node.nil?
+
+    distance = -1
+    return distance + 1 if current_node == node
+
+    distance = depth(node, current_node.left_child)
+    return distance + 1 if distance >= 0
+
+    distance = depth(node, current_node.right_child)
+    return distance + 1 if distance >= 0
+
+    distance
+  end
 end

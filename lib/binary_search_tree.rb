@@ -73,4 +73,16 @@ class Tree
     end
     node
   end
+
+  def find(data, node = root)
+    return if node.nil?
+
+    if data < node.data
+      find(data, node.left_child)
+    elsif data > node.data
+      find(data, node.right_child)
+    else
+      node
+    end
+  end
 end

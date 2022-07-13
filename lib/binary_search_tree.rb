@@ -147,4 +147,11 @@ class Tree
 
     distance
   end
+
+  def balanced?
+    node = root
+    return false unless (height(node.left_child) - height(node.right_child)).abs <= 1
+
+    true
+  end
 end

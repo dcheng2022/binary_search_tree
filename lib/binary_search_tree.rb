@@ -154,4 +154,8 @@ class Tree
 
     true
   end
+
+  def rebalance
+    self.root = build_tree(inorder)
+  end
 end
